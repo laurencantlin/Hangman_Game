@@ -10,14 +10,20 @@
 <body>
 
     <h1>hi</h1>
-    <p># wins</p> Current word: _ _ _ _ _ _ _ </p>
-    <p> # Guesses left </p>
+    <p># wins</p>
+    <p >Guess Word:
+        <span class="currentWord">span</span>
+    </p>
+    <p class=hu> # Guesses left </p>
     <p>Letters Already Guessed: </p>
 
-<script type="text/javascript" src="javascript.js"></script>
-<script type="text/javascript">
-
-</script>
+    <script type="text/javascript" src="javascript.js"></script>
+    <script type="text/javascript">
+        console.dir($("span"));    
+        // $("span").text("h");
+        $("span.currentWord").generateWord();
+        $(".hu")
+    </script>
 </body>
 
 </html>
