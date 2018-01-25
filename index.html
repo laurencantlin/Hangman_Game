@@ -10,19 +10,68 @@
 <body>
 
     <h1>hi</h1>
-    <p># wins</p>
-    <p >Guess Word:
-        <span class="currentWord">span</span>
+    <p>Wins:
+        <span id="wins"></span>
     </p>
-    <p class=hu> # Guesses left </p>
-    <p>Letters Already Guessed: </p>
+    <p>Losses:
+        <span id="losses"></span>
+    </p>
+    <p>Guesses left:
+        <span id="guesses"></span>
+    </p>
+
+    <h1>Guess Word:
+        <span class="currentWord"></span>
+    </h1>
+    <p>Letters Already Guessed:
+        <span id="lettersGuessed"></span>
+    </p>
+
+    <button id="newWord">New Word</button>
 
     <script type="text/javascript" src="javascript.js"></script>
     <script type="text/javascript">
-        console.dir($("span"));    
-        // $("span").text("h");
+        // console.dir($("span"));    
+        // // $("span").text("h");
+
         $("span.currentWord").generateWord();
-        $(".hu")
+        console.log(guesses);
+
+        $("#guesses").text(guesses);
+        $("#losses").text(losses);
+        $("#wins").text(wins);
+
+        var pushButton = function () {
+            console.log("newWord button pushed")
+            $("span.currentWord").generateWord();
+        }
+
+        $("button").on("click", pushButton);
+
+        var keyGuess = function (evt) {
+            console.log(evt.key);
+            guessedLetters.push(evt.key);
+            console.log(guessedLetters);
+            //(if letterArray does not contain key pressed){
+            // subtract 1 guess
+            // // }
+            // (if letterArray does contain key pressed){
+            //     change class of each occuring letter element to visible
+            //      log letter under guessed letters
+            var displayedGuesses ="";
+            for(var i = 0; i < guessedLetters.length; i++){
+                displayedGuesses += " " + guessedLetters[i]
+            }
+            $("#lettersGuessed").text(displayedGuesses);
+        }
+
+
+        if (guesses === 0) {
+            alert("you lost");
+            losses += 1;
+        }
+        document.addEventListener("keyup", keyGuess)
+
     </script>
 </body>
 
