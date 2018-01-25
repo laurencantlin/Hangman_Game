@@ -1,58 +1,64 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Hangman Game</title>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 </head>
-
 <body>
-
     <h1>hi</h1>
     <p>Wins:
-        <span id="wins"></span>
-    </p>
+        <span id="wins"></span></p>
     <p>Losses:
-        <span id="losses"></span>
-    </p>
+        <span id="losses"></span></p>
     <p>Guesses left:
-        <span id="guesses"></span>
-    </p>
-
+        <span id="guesses"></span></p>
     <h1>Guess Word:
-        <span class="currentWord"></span>
-    </h1>
+        <span class="currentWord"></span></h1>
     <p>Letters Already Guessed:
-        <span id="lettersGuessed"></span>
-    </p>
-
+        <span id="lettersGuessed"></span></p>
     <button id="newWord">New Word</button>
-
+<!-- _____________________________________________-->
     <script type="text/javascript" src="javascript.js"></script>
     <script type="text/javascript">
-        // console.dir($("span"));    
-        // // $("span").text("h");
 
-        $("span.currentWord").generateWord();
+        //for selected page element, call generateWord()
+        $("span.currentWord").play();
         console.log(guesses);
 
+        //for all selected page elements, set the innerText to variable specified: 
         $("#guesses").text(guesses);
         $("#losses").text(losses);
         $("#wins").text(wins);
 
+        //create function for what happens when you push button
         var pushButton = function () {
             console.log("newWord button pushed")
             $("span.currentWord").generateWord();
         }
 
+        // event listener for pushbutton
         $("button").on("click", pushButton);
 
+        //create function for what happens on keyGuess
+        var userGuess;
         var keyGuess = function (evt) {
-            console.log(evt.key);
+            userGuess = evt.key;
+            console.log(userGuess);
+
             guessedLetters.push(evt.key);
-            console.log(guessedLetters);
-            //(if letterArray does not contain key pressed){
+            //(if letterArray does not contain key pressed)
+           for (var i = 0; i < letterArray.length; i++){
+               if(letterArray[i] === userGuess){
+                   console.log("you win!")
+               }
+               else{
+                console.log(guesses);
+ guesses = guesses-1;
+                   console.log(guesses);
+               }
+           } 
+            // {
             // subtract 1 guess
             // // }
             // (if letterArray does contain key pressed){
